@@ -11,12 +11,6 @@ import sys
 import textwrap
 
 
-def log (*args, **kwargs):
-    if 'file' not in kwargs:
-        kwargs['file'] = sys.stderr
-    print (*args, **kwargs)
-    kwargs['file'].flush ()
-
 
 class Word (object):
 
