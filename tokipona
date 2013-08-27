@@ -65,8 +65,12 @@ class WordList (object):
         :''n'' nothing, negation, zero
         :''interj'' no!
         ;alasa : ''vt'' gather, hunt
-        ;ale, ali : ''n'' everything, anything, life, the universe
+        ;ale : ''n'' everything, anything, life, the universe
         :''mod'' all, every, complete, whole
+        :''note'' formerly "ali"
+        ;ali : ''n'' everything, anything, life, the universe
+        :''mod'' all, every, complete, whole
+        :''note'' now "ale"
         ;anpa : ''n'' bottom, lower part, under, below, floor, beneath
         :''mod'' low, lower, bottom, down
         ;ante : ''n'' difference
