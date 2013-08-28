@@ -383,7 +383,15 @@ class WordList (object):
 class App (object):
 
     def run (self):
-        usage = """%prog {[options]} [search]"""
+        usage = """%prog {[options]} {[search]}
+Enter a search term to execute a single search from the command line.
+
+If no search is given, an interactive prompt is opened. For each search, if
+there is an exact match in toki pona, the word is shown. Otherwise, all words
+whose English definitions match the search (which is interpreted as a regular
+expression) are shown.
+        
+        """
         parser = OptionParser (usage=usage)
         parser.add_option ('-t', '--tokipona',
                 action='store_const', const='tokipona', dest='domain',
