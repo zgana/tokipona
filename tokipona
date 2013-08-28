@@ -396,23 +396,44 @@ class App (object):
                 default='', metavar='PARTOFSPEECH',
                 help='limit search to PARTOFSPEECH')
         opts, args = parser.parse_args ()
+        self.opts = opts
 
-        search = args[0]
+        self.wl = WordList ()
 
-        wl = WordList ()
+        if args:
+            for n, search in enumerate (args):
+                self.handle_search (search)
+                if n < len (args) - 1:
+                    print ('\n' + 78 * '-' + '\n')
+        else:
+            self.loop ()
 
-        if opts.domain == 'tokipona':
-            word = wl.get_word (search)
+    def handle_search (self, search):
+
+        def print_word (word):
+            print ('\n' + word.get_str() + '\n')
+
+        if self.opts.domain == 'tokipona':
+            word = self.wl.get_word (search)
             if word:
-                print (word.get_str())
+                print_word (word)
                 return
-            else:
-                print ('no matching toki pona word found; '
-                        'searching meanings...\n')
-        words = wl.get_words (search, opts.partofspeech)
+        words = self.wl.get_words (search, self.opts.partofspeech)
+        if not words:
+            print ('no match for "{0}".'.format (search))
         for word in words:
-            print (word.get_str ())
-            print ()
+            print_word (word)
+
+    def loop (self):
+        while True:
+            print ('> ', end='')
+            try:
+                line = raw_input ().strip ()
+            except EOFError:
+                print ()
+                return
+            if line:
+                self.handle_search (line)
 
 
 if __name__ == '__main__':
